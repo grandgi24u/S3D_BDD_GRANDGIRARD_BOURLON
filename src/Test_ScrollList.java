@@ -13,7 +13,6 @@ public class Test_ScrollList extends JFrame {
   JScrollPane scrollpane;
 
   public Test_ScrollList() {
-    super("JScrollPane Demonstration");
     setSize(300, 200);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
