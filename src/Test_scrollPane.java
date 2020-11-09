@@ -7,16 +7,22 @@ import javax.swing.JLabel;
 public class Test_scrollPane {
 
 	public static void main (String[] args) {
-		ScrollPane_content scp = new ScrollPane_content();
 		ScrollPane content = new ScrollPane();
-		ArrayList<JLabel> ls = scp.f1();
-		JLabel jl;
-		for (JLabel l : ls) {
-			jl = l;
-			jl.setPreferredSize(new Dimension(400,40));
-			System.out.println(l);
-			content.add(l);
-		}
+
+//		ScrollPane_content scp = new ScrollPane_content();
+//		ArrayList<JLabel> ls = scp.f1();
+//		JLabel jl;
+//		for (JLabel l : ls) {
+//			jl = l;
+//			jl.setPreferredSize(new Dimension(400,40));
+//			System.out.println(l);
+//			content.add(l);
+//		}
+		
+		content.add(new JLabel("n°1"));
+		content.add(new JLabel("n°2"));
+		content.add(new JLabel("n°3"));
+		
 		JFrame f = new JFrame();
 		f.getContentPane().add(content);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
