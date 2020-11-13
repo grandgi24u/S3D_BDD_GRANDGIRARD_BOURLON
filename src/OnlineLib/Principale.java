@@ -11,7 +11,6 @@ import javax.swing.table.DefaultTableModel;
  * Classe principale permettant de créer la fenetre ainsi que son interface graphique 
  * afin de la remplir grace a d'autres classes externes
  * @author bourl
- *
  */
 public class Principale {
 
