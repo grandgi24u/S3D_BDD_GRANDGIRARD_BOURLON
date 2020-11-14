@@ -5,18 +5,19 @@ import java.util.Scanner;
 public class Question145 {
 
 	private String[][] tabT1 = {{"SELECT titre, email FROM Ecrire where email=?", "titre"},
-			{"SELECT Email, COUNT(Titre) FROM Annoter HAVING COUNT(Titre) >= ? GROUP BY Email", "Email"},
-			{"Select avg(Note) AS notem from Noter where Email = ?", "notem"}};
+								{"SELECT Email, COUNT(Titre) FROM Annoter HAVING COUNT(Titre) >= ? GROUP BY Email", "Email"},
+								{"Select avg(Note) AS notem from Noter where Email = ?", "notem"}};
 	private Scanner s;
 
 	public Question145(int nbReq) throws ClassNotFoundException, SQLException {
-		Connexion c = new Connexion(this.getTabT1()[nbReq][0], this.createScanner());
+		Connexion c = new Connexion();
+		ResultSet r = c.prepareStatWith1(this.getTabT1()[nbReq][0], this.createScanner());
 
-		while(c.getRes().next()) {
-			System.out.println(c.getRes().getString(this.getTabT1()[nbReq][1]));
+		while(r.next()) {
+			System.out.println(r.getString(this.getTabT1()[nbReq][1]));
 		}
 
-		c.getRes().close();
+		r.close();
 	}
 
 	public String createScanner() {

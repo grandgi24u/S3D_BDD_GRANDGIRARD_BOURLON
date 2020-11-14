@@ -8,21 +8,30 @@ import java.sql.SQLException;
 
 public class Connexion {
 	
-	private ResultSet res;
+	private Connection c;
+	private String nom = "SYSTEM";
+	private String mdp = "clement";
 	
-	public Connexion(String n, String b) throws ClassNotFoundException, SQLException {
+	public Connexion() throws ClassNotFoundException, SQLException {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
         String url = "jdbc:oracle:thin:@localhost:1521:xe";
         
-        Connection cnt = DriverManager.getConnection(url,"SYSTEM", "clement");
-        PreparedStatement stt2 = cnt.prepareStatement(n);
-        
-        stt2.setString(1, b);
-        this.res = stt2.executeQuery();
+        this.c = DriverManager.getConnection(url, this.nom, this.mdp);
 	}
-
-	public ResultSet getRes() {
-		return this.res;
+	
+	public ResultSet prepareStat(String n) throws ClassNotFoundException, SQLException {	
+        PreparedStatement stt2 = this.c.prepareStatement(n);
+        return stt2.executeQuery();
+	}
+	
+	public ResultSet prepareStatWith1(String n, String b) throws ClassNotFoundException, SQLException {
+        PreparedStatement stt2 = this.c.prepareStatement(n);
+        stt2.setString(1, b);
+        return stt2.executeQuery();
+	}
+	
+	public Connection getC() {
+		return this.c;
 	}
 
 }
