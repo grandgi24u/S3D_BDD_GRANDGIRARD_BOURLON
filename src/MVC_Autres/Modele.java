@@ -25,6 +25,9 @@ public class Modele implements Sujet {
 	private String[][] headerTab = {{"Titre","Resume","Type"},{"Email", "Nom", "Prenom"},{"Email","Labo"},
 			{"Email"}, {"Moyenne note"}, {""},{"Email"},{""}};
 	
+	private String[] paramRequete = {"Entrer un email :", "Entrer un email :", "Pas de parametre", "Entrer un nombre :",
+			"Entrer un email :", "Entrer un nom de laboratoire :", "Entrer un nom de laboratoire :", "Pas de parametre"};
+	
 	/** The question courante. */
 	//attributs de la question afficher
 	private int questionCourante = 0;
@@ -111,6 +114,8 @@ public class Modele implements Sujet {
 			this.lancerRequete(null);
 		}
 		this.notifierObservateurs(0);
+		this.notifierObservateurs(5);
+		this.notifierObservateurs(6);
 	}
 	
 	/**
@@ -139,6 +144,10 @@ public class Modele implements Sujet {
 	 */
 	public String getExplication() {
 		return this.explication[this.questionCourante];
+	}
+	
+	public String getParamRequete() {
+		return this.paramRequete[this.questionCourante];
 	}
 	
 	/**
@@ -181,7 +190,7 @@ public class Modele implements Sujet {
 	 */
 	public void lancerRequete(String n) throws ClassNotFoundException, SQLException {
 		this.resultatRequete = this.q.effectuerRequette(this.questionCourante, n);
-		for(int i = 1; i < 5; i++) {
+		for(int i = 1; i < 7; i++) {
 			this.notifierObservateurs(i);
 		}
 	}

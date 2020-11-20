@@ -18,9 +18,11 @@ import Controleurs.ControlerRequette;
 import MVC_Autres.Modele;
 import Vues.VueCentre;
 import Vues.VueParamRequette;
+import Vues.VueSud;
 import Vues.VueTableau;
 import Vues.VueTextArea;
 import Vues.VueTextNord;
+import Vues.VueTextSud;
 
 /**
  * The Class Principale.
@@ -71,19 +73,20 @@ public class Princ_inter {
 		panNord.add(te2, BorderLayout.SOUTH);
 		
 		
-		//JPanel sud
-		JPanel panSud= new JPanel();		
-		JLabel j = new JLabel("Entrer votre recherche :");
+		//JPanel sud	
+		
 		JTextField c = new JTextField();		
 		ControlerRequette cr = new ControlerRequette(m);
 		c.addActionListener(cr);
+		
+		VueTextSud vts = new VueTextSud();
+		
+		VueSud panSud = new VueSud(c,vts);
+		
 		c.setPreferredSize(new Dimension(270, 30));
 		c.setForeground(Color.orange);
 		c.setBackground(new Color(16, 120, 94));	
-		panSud.setBackground(new Color(0, 64, 48));
-		j.setForeground(Color.orange);
-		panSud.add(j, BorderLayout.EAST);
-		panSud.add(c, BorderLayout.WEST);
+
 
 		
 		//JPanel centre
@@ -104,6 +107,8 @@ public class Princ_inter {
 		m.enregistrerObservateur(vpr);
 		m.enregistrerObservateur(va);
 		m.enregistrerObservateur(panCentre);
+		m.enregistrerObservateur(panSud);
+		m.enregistrerObservateur(vts);
 		
 
 		//Construction de l'interface graphique
